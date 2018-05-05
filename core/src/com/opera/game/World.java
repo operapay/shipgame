@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Intersector;
 public class World {
 	private ShipGame shipGame;
     private Charecter charecter;
-	private Item garlic;
-	private Item blood;
+	private Item shark;
+	private Item rock;
 	private Warning warn;
 	private Heart heart;
 	private Heart heart2;
@@ -21,8 +21,8 @@ public class World {
 	World(ShipGame shipGame){
 		this.setShipGame(shipGame);
 		charecter = new Charecter(100,100);
-		garlic = new Item(850,number.nextInt(500));
-		blood = new Item(850,number.nextInt(500));
+		shark = new Item(850,number.nextInt(500));
+		rock = new Item(850,number.nextInt(500));
         warn = new Warning(0,800);
         heart0 = new Heart(500,550);
         heart = new Heart(500,550);
@@ -30,8 +30,8 @@ public class World {
 	}
 	public void resetWorld() {
 		charecter.getPosition().set(100,100);
-		garlic.getPosition().set(850, number.nextInt(500));
-		blood.getPosition().set(850, number.nextInt(500));
+		shark.getPosition().set(850, number.nextInt(500));
+		rock.getPosition().set(850, number.nextInt(500));
 		warn.getPosition().set(0,800);
 		heart.getPosition().set(500, 550);
 		heart0.getPosition().set(500, 550);
@@ -57,11 +57,11 @@ public class World {
 	Charecter getCharecter() {
 		return charecter;
 	}
-	Item getGarlic() {
-		return garlic;
+	Item getShark() {
+		return shark;
 	}
-	Item getBlood() {
-		return blood;
+	Item getRock() {
+		return rock;
 	}
 	Warning getWarn() {
 		return warn;
@@ -83,19 +83,31 @@ public class World {
 	}
 	public void update(float delta) {
 		time +=1;
-        if(time%300 == 60 || time%300 == 100 || time%300 == 140) {
-        	garlic.gengarlic();
+        if(time%300 == 100) {
+        	shark.genshark();
         }
         if((time%300)>0 & (time%300)< 300) {
-        	garlic.move();
+        	shark.move();
         }
-        if(time%200 == 40 || time%200 == 80 || time%200 == 110) {
-        	blood.genblood();
+        if(time%200 == 90) {
+        	rock.genrock();
         }
         if((time%200)>0 & (time%200)<200) {
-        	blood.move();
+        	rock.move();
         }
-    	if(Intersector.overlaps(charecter.getRectangle(),garlic.getRectangle()))
+        if(time%150 == 120) {
+        	shark.genshark();
+        }
+        if((time%150)>0 & (time%150)< 150) {
+        	shark.move();
+        }
+        if( time%330 == 160) {
+        	rock.genrock();
+        }
+        if((time%330)>0 & (time%330)<330) {
+        	rock.move();
+        }
+    	if(Intersector.overlaps(charecter.getRectangle(),shark.getRectangle()))
     	{
     		count++;
     		if(count == 1)
@@ -106,9 +118,9 @@ public class World {
     			heart0.getPosition().set(0,0);
     			warn.getPosition().set(0,250);
     		}
-    		garlic.gengarlic();
+    		shark.genshark();
     	}
-    	if(Intersector.overlaps(charecter.getRectangle(),blood.getRectangle()))
+    	if(Intersector.overlaps(charecter.getRectangle(),rock.getRectangle()))
     	{
     		count++;
     		if(count == 1)
@@ -120,7 +132,7 @@ public class World {
     			warn.getPosition().set(0,250);
     		}
     		
-    		blood.genblood();	
+    		rock.genrock();	
     	} 
     	if(count==4) {
     		gameState = 1;

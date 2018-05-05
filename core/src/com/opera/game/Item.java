@@ -16,8 +16,8 @@ public class Item {
     
     public Item(int x, int y) {
         position = new Vector2(x,y);
-        width = 70;
-        height = 70;
+        width = 80;
+        height = 80;
         rectangle = new Rectangle(x,y,width,height);
     }    
  
@@ -38,11 +38,11 @@ public class Item {
     	position.y -= SPEED;
         rectangle.setPosition(position.x,position.y);
     }
-	public void gengarlic() {
+	public void genshark() {
     	position.x = number.nextInt(300);
     	position.y = 800;
 	}
-	public void genblood() {
+	public void genrock() {
     	position.x = number.nextInt(300);
     	position.y = 800;
 	}

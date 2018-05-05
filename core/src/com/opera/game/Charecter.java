@@ -18,8 +18,8 @@ public class Charecter {
      
     public Charecter(int x, int y) {
         position = new Vector2(x,y);
-        width = 110;
-        height = 110;
+        width = 75;
+        height = 140;
         rectangle = new Rectangle(x,y,width,height);
     }   
  
