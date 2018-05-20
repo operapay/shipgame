@@ -25,22 +25,13 @@ public class GameScreen extends ScreenAdapter {
     	update(delta);
     	worldRenderer.render(delta);
     	world.update(delta);
-    	if(world.gameState == 0) {
-    		world.increaseScore();
-    	}
     }
     
     private void update(float delta) {
-        /*if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-        	charecter.move(Charecter.DIRECTION_DOWN);
-        }
-        if(Gdx.input.isKeyPressed(Keys.UP)) {
-        	charecter.move(Charecter.DIRECTION_UP);
-        }*/
-        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+        if(Gdx.input.isKeyPressed(Keys.LEFT)&& world.gameState == 0) {
         	charecter.move(Charecter.DIRECTION_LEFT);
         }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+        if(Gdx.input.isKeyPressed(Keys.RIGHT)&& world.gameState == 0) {
         	charecter.move(Charecter.DIRECTION_RIGHT);
         }
         if(Gdx.input.isKeyPressed(Keys.ENTER) && world.gameState == 1) {
@@ -52,9 +43,7 @@ public class GameScreen extends ScreenAdapter {
         	if(count%50 == 0) {
         		world.resetHeart();
         		count = 0;
-        		//world.gameState = 0;
         	}
-        	//world.resetWorld();
         } 
     }
 	public ShipGame getShipGame() {
